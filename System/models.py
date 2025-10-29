@@ -29,9 +29,9 @@ def validar_placa(value):
         raise ValidationError("Essa placa não está dentro dos padrões necesários")
 
 class veiculos(models.Model):
-    marca = models.CharField(max_length= 50, null= False)
-    modelo = models.CharField(max_length= 50, null= False)
-    placa = models.CharField(max_length=7, null=False, validators=[validar_placa], unique=True)
+    Marca = models.CharField(max_length= 50, null= False)
+    Modelo = models.CharField(max_length= 50, null= False)
+    Placa = models.CharField(max_length=7, null=False, validators=[validar_placa], unique=True)
 
     class Meta:
         db_table = 'Veiculos'
@@ -50,7 +50,7 @@ class agendamento_fix(models.Model):
         CORRETIVA = 'corretiva', 'Corretiva'
     Tipo = models.CharField(max_length=11, choices=tipos.choices, null=False)
     Motivo = models.CharField(max_length=255)
-    observacoes = models.TextField()
+    Observacoes = models.TextField()
     class Meta:
         db_table = 'Agendamentos'
 
@@ -58,7 +58,7 @@ class agendamento_fix(models.Model):
 #        histórico de manutenções
 # ==========================================
 
-class Manutencoes(models.Model):
+class manutencoes(models.Model):
     Motorista_ID = models.ForeignKey('Usuarios', on_delete=models.SET_NULL, null=True, related_name='manutencoes_como_motorista')
     Mecanico_ID = models.ForeignKey('Usuarios', on_delete=models.SET_NULL, null=True, related_name='manutencoes_como_mecanico')
     Veiculo_ID = models.ForeignKey('Veiculos', on_delete=models.CASCADE, related_name='veiculo_consertado')
@@ -78,7 +78,7 @@ class Manutencoes(models.Model):
 #        histórico de manutenções
 # ==========================================
 
-class Alerta(models.Model):
+class alerta(models.Model):
     class stts(models.TextChoices):
         ATIVO = 'ativo','Ativo'
         RESOLVIDO = 'resolvido','Resolvido'
