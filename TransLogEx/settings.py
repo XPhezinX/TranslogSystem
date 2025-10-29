@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'TransLogEx.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'qwik',
+        'NAME': 'Translog_DB',
         'USER': 'root',                 
         'PASSWORD': '1221',            
         'PORT': '3308',                 
