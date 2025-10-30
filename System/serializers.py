@@ -1,4 +1,4 @@
-from System.models import usuarios, veiculos, agendamento_fix, manutencoes, alerta
+from System.models import usuarios, veiculos, agendamento_fix, manutencoes, registro_km, alerta
 from rest_framework import serializers
 
 
@@ -10,7 +10,7 @@ class UsuariosSerializer(serializers.ModelSerializer):
 class VeiculosSerializer(serializers.ModelSerializer):
     class Meta:
         model = veiculos
-        fields = ['id', 'Marca', 'Modelo', 'Placa']
+        fields = ['id', 'Marca', 'Modelo', 'Placa', 'Km_Atual']
 
 class AgendamentoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,10 +21,16 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 class ManutencaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = manutencoes
-        fields = ['id', 'Motorista_ID', 'Mecanico_ID', 'Veiculo_ID'
-                  'Agendamento_ID', 'Data_RealizacaoManu', 'Tipo',
-                    'Motivo', 'Observacoes', 'Custo']
+        fields = ['id', 'Motorista_ID', 'Mecanico_ID', 'Veiculo_ID',
+                  'Agendamento_ID', 'Km_Manutencao', 'Km_Proxima_Revisao',
+                  'Data_RealizacaoManu', 'Tipo', 'Motivo',
+                  'Observacoes', 'Custo']
 
+class RegistroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = registro_km
+        fields = ['id', 'Veiculo_ID', 'Km_Leitura', 'Motorista_Id',
+                  'Data_Hora_Registro', 'Fonte_Registro']
 
 class AlertaSerializer(serializers.ModelSerializer):
     class Meta:

@@ -32,6 +32,7 @@ class veiculos(models.Model):
     Marca = models.CharField(max_length= 50, null= False)
     Modelo = models.CharField(max_length= 50, null= False)
     Placa = models.CharField(max_length=7, null=False, validators=[validar_placa], unique=True)
+    Km_Atual = models.BigIntegerField(default=0)
 
     class Meta:
         db_table = 'Veiculos'
@@ -63,6 +64,8 @@ class manutencoes(models.Model):
     Mecanico_ID = models.ForeignKey('Usuarios', on_delete=models.SET_NULL, null=True, related_name='manutencoes_como_mecanico')
     Veiculo_ID = models.ForeignKey('Veiculos', on_delete=models.CASCADE, related_name='veiculo_consertado')
     Agendamento_ID = models.ForeignKey("Agendamento_fix", on_delete=models.SET_NULL, null=True, related_name='agendamento_fix')
+    Km_Manutencao = models.BigIntegerField(null=False, default=0) 
+    Km_Proxima_Revisao = models.BigIntegerField(null=True, blank=True)
     Data_RealizacaoManu = models.DateField(null=False)
     class tipos(models.TextChoices):
         PREVENTIVA = 'preventiva', 'Preventiva'
@@ -75,7 +78,25 @@ class manutencoes(models.Model):
         db_table = 'Manutencoes'
 
 # ==========================================
-#        histórico de manutenções
+#               quilometragem
+# ==========================================
+
+class registro_km(models.Model):
+    Veiculo_ID = models.ForeignKey('Veiculos', on_delete=models.CASCADE, related_name='registros_km')
+    Km_Leitura = models.BigIntegerField(null=False) 
+    Motorista_ID = models.ForeignKey('Usuarios', on_delete=models.SET_NULL, null=True)
+    Data_Hora_Registro = models.DateTimeField(auto_now_add=True) 
+    class fontes(models.TextChoices):
+        ABASTECIMENTO = 'abastecimento', 'Abastecimento'
+        INICIO_TURNO = 'inicio_turno', 'Início de Turno'
+        MECANICO = 'mecanico', 'Mecânico (Check-in)'
+    Fonte_Registro = models.CharField(max_length=15, choices=fontes.choices, null=False)
+
+    class Meta:
+        db_table = 'RegistrosKM'
+
+# ==========================================
+#                 alertas
 # ==========================================
 
 class alerta(models.Model):
