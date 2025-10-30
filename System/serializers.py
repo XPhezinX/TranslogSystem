@@ -1,11 +1,18 @@
 from System.models import usuarios, veiculos, agendamento_fix, manutencoes, registro_km, alerta
 from rest_framework import serializers
+from django.contrib.auth.hashers import make_password 
+
 
 
 class UsuariosSerializer(serializers.ModelSerializer):
     class Meta:
         model = usuarios
         fields = ['id', 'Nome', 'Email', 'Senha', 'Telefone', 'Cargo']
+        extra_kwargs = {'Senha': {'write_only': True}} 
+
+    def create(self, validated_data):
+        validated_data['Senha'] = make_password(validated_data.get('Senha'))
+        return super().create(validated_data)
 
 class VeiculosSerializer(serializers.ModelSerializer):
     class Meta:
