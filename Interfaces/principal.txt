@@ -1,0 +1,27 @@
+Menus Principais,Dashboard/Início: Visão geral.
+
+Veículos: Cadastro, listagem e busca de veículos."
+
+Manutenção: Agendamentos, histórico, alertas de revisão."
+
+Abastecimento: Registro de consumo e custos.
+
+Motoristas: Cadastro e informações da equipe.
+
+Relatórios: Geração de relatórios (custos, performance, etc.)."
+
+Configurações/Administração: Gerenciamento de usuários, parâmetros do sistema."
+
+
+
+Informações Exibidas (Widgets/Gráficos)
+
+Veículos em Status: Total de veículos (Em Operação, Em Manutenção, Inativos)."
+
+Alertas de Manutenção: Lista dos veículos que estão próximos da km de revisão ou com manutenção pendente.
+
+Custo Médio da Frota: Custo por km rodado no mês atual.
+
+Próximos Abastecimentos: Alertas de veículos com baixo nível ou próximo do limite de reabastecimento.
+
+Quilometragem Total: KM rodada pela frota no mês/período.

@@ -1,0 +1,132 @@
+-- apenas os dados foram gerados por uma IA (Gemini)
+
+create database TransLogExpress
+default character set utf8mb4
+default collate utf8mb4_general_ci;
+
+use TransLogExpress;
+
+create table Usuarios (
+	id int auto_increment primary key,
+	Nome varchar(100) not null,
+	Email varchar(100) not null unique, 
+	Senha varchar(255) not null,
+	Telefone varchar(20) not null unique,
+	Cargo enum('Mecanico','Motorista') not null
+) default charset = utf8mb4;
+
+insert into Usuarios (Nome, Email, Senha, Telefone, Cargo) values
+('Carlos Silva', 'carlos.silva@oficinaexemplo.com', 'senha12345', '(21) 98765-4321', 'Mecanico'),
+('Mariana Santos', 'mariana.santos@oficinaexemplo.com', 'outrasenha99', '(11) 99887-7665', 'Motorista'),
+('Ricardo Oliveira', 'ricardo.oliveira@oficinaexemplo.com', 'senhaforte!01', '(31) 91234-5678', 'Mecanico'),
+('Ana Paula Lima', 'ana.lima@oficinaexemplo.com', 'acesso_rapido', '(41) 96543-2109', 'Motorista'),
+('Felipe Mendes', 'felipe.mendes@oficinaexemplo.com', 'mecanico_top', '(51) 97777-8888', 'Mecanico');
+
+
+
+create table Veiculos (
+	id int auto_increment primary key,
+	Marca varchar(50) not null,
+	Modelo varchar(50) not null, 
+	Placa varchar(7) not null unique,
+	Km_Atual decimal(10,2)
+) default charset = utf8mb4;
+
+insert into Veiculos (Marca, Modelo, Placa, Km_Atual) values
+('Ford', 'Transit', 'ABC1234', 125000.50),
+('Mercedes-Benz', 'Sprinter 314', 'DEF5678', 89345.20),
+('Volkswagen', 'Delivery 9.170', 'GHI9012', 45200.00),
+('Chevrolet', 'S10', 'JKL3456', 21050.80),
+('Renault', 'Master', 'MNO7890', 156780.15);
+
+
+
+create table Agendamentos (
+    id int auto_increment primary key,
+    Motorista_ID int,
+    Mecanico_ID int,
+    Veiculo_ID int not null,
+    Data_prevista_manutencao date not null,
+    Tipo enum('Preventiva', 'Corretiva') not null,
+    Motivo VARCHAR(255),
+    Observacoes TEXT,
+    foreign key (Motorista_ID) references Usuarios(id) on delete set null,
+    foreign key (Mecanico_ID) references Usuarios(id) on delete set null,
+    foreign key (Veiculo_ID) references Veiculos(id) on delete cascade
+) default charset = utf8mb4;
+
+insert into Agendamentos (Motorista_id, Mecanico_id, Veiculo_id, Data_prevista_manutencao, Tipo, Motivo, Observacoes) values
+(2, 1, 1, '2025-11-10', 'Preventiva', 'troca de oleo e filtros programada.','verificar estado dos pneus traseiros.'),
+(4, 3, 3, '2025-11-12', 'Corretiva', 'ruido alto no motor, perda de potencia.','fazer diagnostico completo na injecao eletronica.'),
+(2, 5, 5, '2025-11-15', 'Preventiva', 'revisao dos 150000 km e alinhamento.','prioridade na troca das pastilhas de freio.'),
+(4, 1, 2, '2025-11-18', 'Corretiva', 'problema no sistema de ar condicionado.','checar vazamento de gas e compressor.'),
+(4, 3, 4, '2025-11-20', 'Preventiva', 'inspecao geral e rodizio de pneus.','agendar balanceamento apos o rodizio.');
+
+
+
+create table Manutencoes (
+    id int auto_increment primary key,
+    Motorista_id int,
+    Mecanico_id int,
+    Veiculo_id int not null,
+    Agendamento_id int,
+    KM_manutencao decimal(10,2) not null,
+    KM_proxima_revisao decimal(10,2) not null,
+    Data_realizacaomanu date not null,
+    Tipo enum('Preventiva', 'Corretiva') not null,
+    Motivo varchar(255),
+    Observacoes text,
+    Custo decimal(10, 2) not null,
+    foreign key (Motorista_id) references Usuarios(id) on delete set null,
+    foreign key (Mecanico_id) references Usuarios(id) on delete set null,
+    foreign key (Veiculo_id) references Veiculos(id) on delete cascade,
+    foreign key (Agendamento_id) references Agendamentos(id) on delete set null
+) default charset = utf8mb4;
+
+insert into Manutencoes (Motorista_id, Mecanico_id, Veiculo_id, Agendamento_id, KM_manutencao, KM_proxima_revisao, Data_realizacaomanu, Tipo, Motivo, Observacoes, Custo) values
+(2, 1, 1, 1, 125100, 150000, '2025-11-10', 'preventiva', 'troca de oleo, filtros e correias.', 'servico preventivo realizado conforme agendado.', 850.75),
+(4, 3, 3, 2, 45300, 50000, '2025-11-12', 'corretiva', 'substituicao da bomba injetora por falha.', 'motor funcionava com falhas e perdia potencia em subidas.', 4120.00),
+(2, 5, 5, 3, 156850, 180000, '2025-11-15', 'preventiva', 'revisao geral e alinhamento.', 'pneus trocados e balanceados. pastilhas de freio traseiras substituidas.', 1450.50),
+(4, 1, 2, 4, 89400, 130000, '2025-11-18', 'corretiva', 'reparo no compressor do ar condicionado.', 'troca do gas refrigerante e reparo de vazamento.', 980.00),
+(4, 3, 4, 5, 21100, 30000, '2025-11-20', 'preventiva', 'rodizio e inspecao de rotina.', 'sem problemas graves detectados. veiculo liberado.', 350.00);
+
+
+
+create table RegistrosKM (
+    id int auto_increment primary key,
+    Veiculo_id int not null,
+    KM_leitura decimal(10, 2) not null,
+    Motorista_id int,
+    Data_hora_registro datetime default current_timestamp,
+    Fonte_registro varchar(15) not null,
+    foreign key (Veiculo_id) references Veiculos(id) on delete cascade,
+    foreign key (Motorista_id) references Usuarios(id) on delete set null
+) default charset = utf8mb4;
+
+insert into RegistrosKM (Veiculo_id, KM_leitura, Motorista_id, Data_hora_registro, Fonte_registro) values
+(1, 125050, 2, '2025-11-09 08:30:00', 'inicio_turno'),
+(3, 45250, 4, '2025-11-11 14:15:00', 'abastecimento'),
+(5, 156790, 2, '2025-11-14 09:00:00', 'inicio_turno'),
+(2, 89350, 4, '2025-11-16 17:40:00', 'abastecimento'),
+(4, 21060, 4, '2025-11-19 06:00:00', 'inicio_turno'),
+(1, 125100, 1, '2025-11-10 11:30:00', 'mecanico');
+
+
+
+create table Alerta (
+    id int auto_increment primary key,
+    Situacao enum('Ativo','Resolvido') not null,
+    Veiculo_id int not null,
+    Mensagem text,
+    foreign key (Veiculo_id) references Veiculos(id) on delete cascade
+) default charset = utf8mb4;
+
+insert into Alerta (Situacao, Veiculo_id, Mensagem) values
+('resolvido', 3, 'ruido estranho no motor, corrigido na manutencao de 12/11/2025.'),
+('ativo', 2, 'luz de injecao acesa no painel. verificar urgente.'),
+('ativo', 5, 'freios com barulho agudo, precisa de inspecao.'),
+('resolvido', 1, 'necessidade de troca de oleo, resolvido na preventiva.');
+
+
+-- alteração na palavra 'Status' pois estava reconhecendo como um comando
+-- o nome do banco está diferente do pedido, pois o nome pedido está no banco do Django

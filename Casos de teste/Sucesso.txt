@@ -1,0 +1,42 @@
+
+CT01 (Sucesso)
+Login com Credenciais Válida
+Verificar se o usuário pode acessar a Interface Principal com dados corretos
+
+Usuário: admin@frota.com.br,
+Senha: SenhaValida123",
+
+Redirecionamento para a Dashboard.
+
+
+
+
+
+
+
+CT03 (Sucesso)
+Cadastro de Veículo Válido
+Cadastrar um veículo com todos os campos obrigatórios e placa inédita
+
+Placa: ABC1D23, 
+Marca: Ford, 
+KM Atual: 1000, KM 
+Próx. Revisão: 10000"
+
+Mensagem de sucesso: ""Veículo ABC1D23 cadastrado com sucesso."" O veículo aparece na lista."
+
+
+
+
+CT05 (Sucesso)
+Registro de Manutenção com Atualização
+Registrar uma manutenção de Revisão e atualizar a KM de Próxima 
+
+Veículo: ABC1D23, 
+Tipo: Revisão, 
+KM na Manut: 10000, 
+Novo KM 
+Próx. Rev.: 20000",
+
+Mensagem de sucesso: ""Manutenção registrada."" O campo ""KM para Próxima Revisão"" do veículo é atualizado para 20000."
+

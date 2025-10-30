@@ -1,0 +1,29 @@
+
+Campos Obrigatórios:
+- Placa: Campo de texto (formato Mercosul/Antigo), único."
+- Marca: Lista de seleção (Dropdown).
+- Modelo: Campo de texto ou lista de seleção dependente da Marca.
+- Ano de Fabricação: Campo numérico (4 dígitos).
+- Quilometragem Atual (KM): Campo numérico (inteiro).
+
+
+KM para Próxima Revisão: 
+- Campo numérico, define o intervalo de alerta."
+- Campos Opcionais,"Chassi/VIN, Cor, Tipo de Combustível, Status (Ativo/Inativo), Departamento/Centro de Custo, Data de Aquisição."
+
+
+Funcionalidades:
+- Botão ""Salvar"": Registra um novo veículo."
+- "Botão ""Limpar"": Limpa todos os campos."
+
+
+Edição de Dados: 
+Permite atualizar as informações de um veículo existente.
+
+Lógica de Validação:
+- Placa Única: O sistema deve impedir a duplicação de placas no banco de dados. Ao tentar salvar uma placa já existente, deve exibir uma mensagem de erro (""Placa já cadastrada no sistema. Verifique."")."
+- Formato: Placa, Ano, KM devem ter formato válido."
+
+
+KM de Revisão: 
+Deve ser um valor positivo e maior que 0.

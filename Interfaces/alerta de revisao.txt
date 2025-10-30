@@ -1,0 +1,12 @@
+
+Lógica de Alerta:
+O sistema compara a Quilometragem Atual do veículo (último registro) com a KM para Próxima Revisão cadastrada.
+
+- Alerta: Será emitido um alerta (na Dashboard, por e-mail, ou notificação) quando a Quilometragem Atual atingir ou estiver dentro de uma margem predefinida (ex: 500 km) da KM para Próxima Revisão."
+
+- Exemplo: KM para Próxima Revisão: 60.000 km. Se o limite de alerta for 500 km, o alerta é disparado quando a KM Atual for ≥ 59.500 km."
+
+
+Exibição do Alerta:"Dashboard: Widget dedicado para ""Alertas de Manutenção"" (conforme item 5)."
+
+- Lista de Veículos: Ícone de aviso ao lado do veículo na lista.

@@ -1,0 +1,36 @@
+Campos
+
+- Usuário/E-mail: Campo de texto simples.
+- Senha: Campo de senha (caracteres ocultos).
+
+
+Ação
+
+-Botão ""Entrar"" / ""Login"": Submete as credenciais."
+-"Link ""Esqueci minha senha"": Inicia o processo de recuperação de senha."
+
+
+Validações
+
+-Obrigatórios: Usuário/E-mail e Senha não podem ser vazios.
+-Formato: Usuário/E-mail deve seguir um formato de e-mail válido (ex: usuario@dominio.com).
+-Comprimento: Senha deve ter um comprimento mínimo (ex: 8 caracteres).
+
+
+Mensagens de Erro:
+-Campos Vazios: ""Por favor, preencha todos os campos."""
+-Credenciais Inválidas (Usuário/Senha): ""Usuário ou senha incorretos. Tente novamente."" (Mensagem genérica por segurança)."
+-Usuário Inativo/Bloqueado: ""Sua conta está inativa. Contate o administrador."""
+
+Fluxo - Válido
+
+1. O usuário insere um Usuário/E-mail válido e a Senha correta.
+2. Clica em ""Entrar""."
+3. O sistema valida as credenciais.
+4. O sistema redireciona o usuário para a Interface Principal (Dashboard).
+
+Fluxo - Inválido
+1. O usuário insere um Usuário/E-mail válido e uma Senha incorreta.
+2. Clica em ""Entrar""."
+3. O sistema exibe a mensagem de erro: ""Usuário ou senha incorretos. Tente novamente."""
+4. O usuário permanece na tela de login.

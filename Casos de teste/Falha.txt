@@ -1,0 +1,35 @@
+
+CT02 (Falha)
+Login com Senha Inválida
+Verificar se o sistema impede o acesso com senha incorreta
+
+Usuário: admin@frota.com.br, 
+Senha: SenhaIncorreta",
+
+"Mensagem de erro: ""Usuário ou senha incorretos. Tente novamente."""
+
+
+
+CT04 (Falha)
+Cadastro com Placa Duplicada
+Tentar cadastrar um veículo com uma placa já existente
+
+Placa: ABC1D23, 
+Marca: VW, 
+KM Atual: 500, KM 
+Próx. Revisão: 5000"
+
+Mensagem de erro: ""Placa ABC1D23 já cadastrada no sistema. Verifique."""
+
+
+
+CT06 (Falha)
+Alerta de Revisão - KM Mínima
+Veículo atinge o limite de alerta para manutenção
+
+Veículo: XYZ9E87,
+KM Atual: 9.550 km, 
+KM Próx. Revisão: 10.000 km 
+
+(Alerta configurado para 500 km)"
+O sistema deve disparar um Alerta na Dashboard/Notificação para o veículo XYZ9E87.

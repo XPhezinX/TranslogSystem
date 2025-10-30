@@ -1,0 +1,42 @@
+Requisitos funcionais
+
+1 - Cadastra veículos da empresa
+2 - Cadastra cargos diferentes
+3 - Agenda manutenções
+4 - histórico de manutenções de um determinado veículo
+5 - faz um relatório com custo e expecificações daquele conserto
+6 - Verifica se a placa adiocionada corresponde a regra da Mercosul
+7 - Protege a senha em hashes, para não ser visualizada
+8 - Cria um histórico/registro dos Km rodados de cada viagem 
+
+
+
+
+Requisitos de Infraestutura (com o auxilio de uma IA)
+
+Componente:
+Requisito Mínimo Sugerido
+
+Sistema Operacional (Servidor):         
+"Linux (Ubuntu Server, CentOS) ou Windows Server."
+
+SGBD (Sistema Gerenciador de Banco de Dados):    
+MYSQL Workbench
+
+Linguagem de Programação (Backend):      
+Python com Django
+
+Servidor Web:     
+Apache ou Nginx.
+
+Recursos Mínimos de Hardware (Servidor):
+CPU: 2 vCPUs (Processadores virtuais).
+
+RAM:
+4 GB de RAM.
+
+Armazenamento: 
+50 GB SSD (para sistema e banco de dados).
+
+Infraestrutura de Rede:
+Conexão de internet estável e com boa largura de banda.

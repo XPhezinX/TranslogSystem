@@ -1,0 +1,17 @@
+
+Campos:
+
+- Veículo: Lista de seleção (Dropdown) com todos os veículos cadastrados (identificado por Placa/Modelo).
+
+- Tipo de Manutenção: Lista de seleção (Preventiva, Corretiva, Preditiva, Revisão por KM)."
+
+- Data da Manutenção: Campo de data.
+
+- Quilometragem na Manutenção: Campo numérico (obrigatório).
+
+- Descrição do Serviço: Área de texto para detalhamento.
+
+- Custo Total: Campo monetário.
+
+Funcionalidade Adicional:
+"Atualização de KM para Revisão: Após registrar uma manutenção (especialmente a de 'Revisão por KM'), o sistema deve permitir e/ou solicitar a atualização do novo valor de ""KM para Próxima Revisão"" do veículo, ou recalculá-lo automaticamente com base no intervalo padrão."
